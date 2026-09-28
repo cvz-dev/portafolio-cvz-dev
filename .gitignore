@@ -1,0 +1,29 @@
+# Sitio estático: se publica la carpeta tal cual (ver netlify.toml).
+# js/vendor/ y assets/ SÍ se versionan: el sitio los necesita para funcionar.
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+*~
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Netlify CLI (netlify dev / netlify link)
+.netlify/
+
+# Variables de entorno y secretos
+.env
+.env.*
+
+# Dependencias y logs, por si más adelante se agrega alguna herramienta con npm
+node_modules/
+npm-debug.log*
+*.log
+
+# Claude Code (configuración local)
+.claude/

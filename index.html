@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="es" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sebastian Rodríguez — Portafolio</title>
+  <meta name="description" content="Sebastian Rodríguez Arellano (cvz-dev), estudiante de Ingeniería en Sistemas y TI. Inteligencia artificial, desarrollo de software y automatización.">
+  <meta name="author" content="Sebastian Rodríguez Arellano">
+  <meta name="theme-color" content="#070707">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Sebastian Rodríguez — Portafolio">
+  <meta property="og:description" content="Inteligencia artificial, software y automatización.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <script>
+    // Marca que JS está activo antes de pintar, para ocultar lo que se anima al entrar.
+    document.documentElement.classList.replace('no-js', 'js');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Doto:wght@500;700;900&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="css/lenis.css">
+  <link rel="stylesheet" href="css/styles.css?v=24">
+
+  <script src="js/vendor/gsap.min.js" defer></script>
+  <script src="js/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="js/vendor/SplitText.min.js" defer></script>
+  <script src="js/vendor/lenis.min.js" defer></script>
+  <script src="js/scramble.js?v=8" defer></script>
+  <script src="js/terminal.js?v=3" defer></script>
+  <script src="js/main.js?v=27" defer></script>
+</head>
+<body class="dotgrid" data-hero="terminal" data-mono="SR" data-cursor="puntos">
+
+  <!-- ============ NAV ============ -->
+  <header>
+    <nav class="nav glass" aria-label="Principal">
+      <a class="brand" href="#inicio" aria-label="Inicio">
+        <svg class="brand-mark" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+          <circle cx="3" cy="3" r="2"></circle><circle cx="9" cy="3" r="2"></circle><circle cx="15" cy="3" r="2" opacity=".3"></circle>
+          <circle cx="3" cy="9" r="2" opacity=".3"></circle><circle cx="9" cy="9" r="2"></circle><circle cx="15" cy="9" r="2" opacity=".3"></circle>
+          <circle cx="3" cy="15" r="2" opacity=".3"></circle><circle cx="9" cy="15" r="2"></circle><circle cx="15" cy="15" r="2"></circle>
+        </svg>
+        <span class="brand-name">cvz-dev</span>
+      </a>
+      <div class="nav-links">
+        <a class="navlink" href="#sobre-mi">Sobre mí</a>
+        <a class="navlink" href="#proyectos">Proyectos</a>
+        <a class="navlink" href="#certificados">Certificados</a>
+      </div>
+      <a class="btn btn-solid btn-sm nav-cta magnet" href="#contacto">Contacto</a>
+      <button class="menu-btn" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">
+        <svg class="icon-open" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 6.5h12M3 11.5h12"></path></svg>
+        <svg class="icon-close" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4.5 4.5l9 9M13.5 4.5l-9 9"></path></svg>
+      </button>
+      <div class="menu glass" id="menu" hidden>
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#certificados">Certificados</a>
+        <a class="btn btn-solid" href="#contacto">Contacto</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero wrap ledfield" id="inicio">
+      <div class="led-spot" aria-hidden="true"></div>
+
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <h1 class="hero-name dot">Sebastian<br>Rodríguez</h1>
+          <p class="hero-title" data-split>Inteligencia artificial, <span class="muted-2">software y automatización.</span></p>
+          <p class="hero-lead intro">Construyo herramientas que recolectan, entienden y organizan información por sí solas.</p>
+          <div class="hero-actions intro">
+            <a class="btn btn-solid magnet" href="#proyectos">Ver proyectos
+              <svg class="arr-down" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M8 3v10M3.5 8.5 8 13l4.5-4.5"></path></svg>
+            </a>
+            <a class="btn btn-glass glass magnet" href="#contacto">Hablemos</a>
+          </div>
+        </div>
+
+        <!-- Visual del hero: monograma / mapa / terminal (data-hero en <body>) -->
+        <div class="device intro">
+          <div class="tilt">
+            <div class="glow glow-accent" aria-hidden="true"></div>
+            <div class="glow glow-white" aria-hidden="true"></div>
+
+            <!-- 1 · Monograma -->
+            <div class="visual visual-mono">
+              <div class="glass float panel">
+                <svg class="mono-svg" viewBox="0 0 380 480" aria-hidden="true">
+                  <g class="mono-base"></g>
+                  <g class="mono-all"></g>
+                  <g class="mono-lit"></g>
+                  <path d="M56 394 L324 394" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="4" stroke-linecap="round" stroke-dasharray="0.1 12"></path>
+                  <circle class="rec" cx="324" cy="436" r="6"></circle>
+                </svg>
+                <div class="glare" aria-hidden="true"></div>
+                <span class="panel-label mono">Sebastian Rodríguez</span>
+              </div>
+              <div class="visual-caption mono"><span>Monograma · cvz-dev</span><span>Sistema en línea</span></div>
+            </div>
+
+            <!-- 2 · Mapa de perfil -->
+            <div class="visual visual-map">
+              <div class="glass float panel">
+                <svg viewBox="0 0 380 480" aria-hidden="true">
+                  <g fill="none" stroke="rgba(255,255,255,.07)" stroke-width="11" stroke-linecap="round">
+                    <path d="M163 112.8 A130 130 0 0 0 62.8 213"></path>
+                    <path d="M217 112.8 A130 130 0 0 1 317.2 213"></path>
+                    <path d="M317.2 267 A130 130 0 0 1 217 367.2"></path>
+                    <path d="M163 367.2 A130 130 0 0 1 62.8 267"></path>
+                  </g>
+                  <circle class="spin" cx="190" cy="240" r="92" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="4" stroke-linecap="round" stroke-dasharray="0.1 12"></circle>
+                  <circle class="spin-rev" cx="190" cy="240" r="64" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="3" stroke-linecap="round" stroke-dasharray="0.1 10"></circle>
+                  <g stroke-width="10" stroke-linecap="round">
+                    <path class="lit m1" d="M163 112.8 A130 130 0 0 0 62.8 213"></path>
+                    <path class="lit m2" d="M217 112.8 A130 130 0 0 1 317.2 213"></path>
+                    <path class="lit m3" d="M317.2 267 A130 130 0 0 1 217 367.2"></path>
+                    <path class="lit m4" d="M163 367.2 A130 130 0 0 1 62.8 267"></path>
+                  </g>
+                  <circle class="rec" cx="190" cy="282" r="5"></circle>
+                </svg>
+                <div class="glare" aria-hidden="true"></div>
+                <span class="map-initials dot" data-initials>SR</span>
+                <div class="area lab m1" style="left:26px;top:26px"><span>IA</span><span class="mono">Embeddings</span></div>
+                <div class="area lab m2 right" style="right:26px;top:26px"><span>Desarrollo</span><span class="mono">Plataformas web</span></div>
+                <div class="area lab m3 right" style="right:26px;bottom:26px"><span>Automatización</span><span class="mono">Web scraping</span></div>
+                <div class="area lab m4" style="left:26px;bottom:26px"><span>Investigación</span><span class="mono">Regresión lineal</span></div>
+              </div>
+              <div class="visual-caption mono"><span>Perfil · 04 áreas</span><span>Sistema en línea</span></div>
+            </div>
+
+            <!-- 3 · Terminal interactiva (js/terminal.js) -->
+            <div class="visual visual-term">
+              <div class="term-halo" aria-hidden="true"></div>
+              <div class="term" data-term>
+                <div class="glare term-glare" aria-hidden="true"></div>
+                <div class="term-head mono">
+                  <span class="term-rec" aria-hidden="true"></span>
+                  <span class="term-path">Terminal · ~/sebastian</span>
+                  <span class="term-segs" data-term-segs aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+                </div>
+                <div class="term-body" data-term-body>
+                  <div class="term-log" data-term-log role="log" aria-live="polite" aria-label="Salida de la terminal"></div>
+                  <label class="term-line">
+                    <span class="t-acc">sebastian:~$</span>
+                    <span class="term-field">
+                      <input class="term-input" data-term-input type="text" aria-label="Comando de la terminal" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="send">
+                      <span class="term-caret" data-term-caret aria-hidden="true"></span>
+                    </span>
+                  </label>
+                </div>
+                <div class="term-quick mono" aria-label="Comandos rápidos">
+                  <button type="button" data-cmd="help">help</button>
+                  <button type="button" data-cmd="proyectos">proyectos</button>
+                  <button type="button" data-cmd="stack">stack</button>
+                  <button type="button" data-cmd="contacto">contacto</button>
+                  <button type="button" data-cmd="scramble">scramble</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-foot mono intro">
+        <span class="scroll-cue"><span class="scroll-line"></span>Desplázate</span>
+      </div>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee-wrap" aria-hidden="true">
+      <div class="marquee mono">
+        <div class="marquee-group">
+          <span>Web scraping</span><i class="accent">●</i><span>Regresión lineal</span><i>●</i><span>Automatización</span><i>●</i><span>Desarrollo web</span><i>●</i><span>Python</span><i>●</i><span>n8n</span><i>●</i><span>PostgreSQL</span><i>●</i>
+        </div>
+        <div class="marquee-group">
+          <span>Web scraping</span><i class="accent">●</i><span>Regresión lineal</span><i>●</i><span>Automatización</span><i>●</i><span>Desarrollo web</span><i>●</i><span>Python</span><i>●</i><span>n8n</span><i>●</i><span>PostgreSQL</span><i>●</i>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ SOBRE MÍ ============ -->
+    <section class="section wrap about" id="sobre-mi">
+      <div class="about-top">
+        <p class="section-label mono reveal">01<span class="rule"></span>Sobre mí</p>
+        <p class="about-text" data-words>Me interesa convertir procesos manuales en sistemas que trabajan solos. Desde recolectar y entender información con IA hasta plataformas que usan personas reales todos los días.</p>
+      </div>
+      <div class="about-info">
+        <p class="about-lead reveal">Lo que más disfruto es encontrar la parte repetitiva de un proceso y construir la herramienta que la resuelve.</p>
+        <dl class="facts mono reveal">
+          <div><dt>Estudio</dt><dd>Ingeniería en Sistemas y TI</dd></div>
+          <div><dt>Universidad</dt><dd>Universidad Anáhuac</dd></div>
+          <div><dt>Enfoque</dt><dd>IA · desarrollo · automatización</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ============ PROYECTOS ============ -->
+    <section class="section wrap" id="proyectos">
+      <div class="head-row">
+        <div class="head-titles">
+          <p class="section-label mono reveal">02<span class="rule"></span>Proyectos</p>
+          <h2 class="section-title" data-lines>En qué he trabajado</h2>
+        </div>
+        <p class="head-note reveal">Proyectos académicos, de industria y de investigación en los que he participado.</p>
+      </div>
+
+      <div class="bento">
+        <!-- Anáhuac × Banorte -->
+        <article class="glass card spot pcard s7 reveal">
+          <div class="pcard-top">
+            <span class="path"><span class="path-home">~</span><span class="path-dir">/proyectos/</span>anahuac×banorte</span>
+            <span class="meta mono">IA · 2025</span>
+          </div>
+          <div class="pcard-head">
+            <h3>Noticias para predecir la inflación subyacente</h3>
+            <p>Base de datos de noticias para predecir la inflación subyacente en el Desafío de Banorte: 23 fuentes y ~775 noticias por semana, por unos $5 pesos. Desarrollé los flujos de n8n que las limpian, las clasifican con OpenAI y las guardan en PostgreSQL.</p>
+          </div>
+          <div class="viz viz-emb" data-embeddings>
+            <span class="sweep" aria-hidden="true"></span>
+            <span class="clabel mono" style="left:12%;top:12%">Economía MX</span>
+            <span class="clabel mono accent" style="left:49%;top:88%">Inflación</span>
+            <span class="clabel mono" style="left:76%;top:6%">Gobierno</span>
+            <span class="viz-note mono">Noticias por categoría · ilustrativo</span>
+          </div>
+          <div class="pipe mono">
+            <span class="sub">Noticieros</span><span class="sub dim">→</span><span class="sub">n8n</span><span class="sub dim">→</span><span class="sub">OpenAI</span><span class="sub dim">→</span><span class="sub">PostgreSQL</span>
+            <span class="grow"></span>
+            <span class="meta">Ago – Nov 2025</span>
+            <a class="link" href="assets/docs/reconocimiento-banorte.pdf" target="_blank" rel="noopener">Reconocimiento
+              <svg class="arr" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5"></path></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Protocolos -->
+        <article class="glass card spot pcard s5 reveal">
+          <div class="pcard-top">
+            <span class="path"><span class="path-home">~</span><span class="path-dir">/proyectos/</span>servicio-social</span>
+            <span class="status"><span class="spinner" aria-hidden="true"></span>en desarrollo</span>
+          </div>
+          <div class="pcard-head">
+            <h3 class="h3-sm">Plataforma de seguimiento de protocolos de investigación</h3>
+            <p>Los investigadores de la Facultad de Salud suben sus protocolos, pasan por pre-comité y comité, y reciben seguimiento cada 6 meses. Empezó en Power Apps; propuse migrarlo a código propio y hoy lo desarrollamos en equipo.</p>
+          </div>
+          <div class="rows">
+            <div class="row sub">
+              <span class="mono meta">001</span><span class="row-name">Seguimiento semestral</span>
+              <span class="bars"><i class="fill"></i><i class="fill"></i><i class="fill"></i><i class="fill"></i></span>
+            </div>
+            <div class="row sub">
+              <span class="mono meta">002</span><span class="row-name">Comité temático</span>
+              <span class="bars"><i class="fill"></i><i class="fill"></i><i class="fill recdot"></i><i class="off"></i></span>
+            </div>
+            <div class="row sub">
+              <span class="mono meta">003</span><span class="row-name">Pre-comité · viabilidad</span>
+              <span class="bars"><i class="fill"></i><i class="off"></i><i class="off"></i><i class="off"></i></span>
+            </div>
+          </div>
+          <div class="pcard-foot mono"><span>.NET · Angular</span><span>Etapas · ilustrativo</span></div>
+        </article>
+
+        <!-- UNAM -->
+        <article class="glass card spot pcard s4 reveal">
+          <div class="pcard-top">
+            <span class="path"><span class="path-home">~</span><span class="path-dir">/logros/</span>unam</span>
+            <span class="meta mono">2025</span>
+          </div>
+          <div class="ring">
+            <div class="ringwrap">
+              <svg width="200" height="200" viewBox="0 0 200 200" aria-hidden="true">
+                <circle class="spin" cx="100" cy="100" r="92" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="4" stroke-linecap="round" stroke-dasharray="0.1 11.5"></circle>
+                <circle class="spin-rev" cx="100" cy="100" r="74" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="3" stroke-linecap="round" stroke-dasharray="0.1 9.7"></circle>
+                <circle class="lit l3" cx="100" cy="100" r="92" stroke-width="4" stroke-linecap="round" stroke-dasharray="140 438" transform="rotate(-90 100 100)"></circle>
+                <circle class="orbit" cx="100" cy="100" r="92" fill="none" stroke-width="4" stroke-linecap="round" stroke-dasharray="60 518"></circle>
+              </svg>
+            </div>
+            <span class="dot win">WIN</span>
+          </div>
+          <div class="pcard-head">
+            <h3 class="h3-xs">Ganador del Macroentrenamiento en IA</h3>
+            <p class="small">Primer lugar en entrenamiento de modelos: detectar Parkinson por patrones de voz con KNN y una red neuronal.</p>
+          </div>
+          <div class="pipe mono pcard-end">
+            <span>Python</span><span class="dim">·</span><span>scikit-learn</span>
+            <span class="grow"></span>
+            <a class="link" href="assets/docs/constancia-meia-2025.pdf" target="_blank" rel="noopener">Constancia
+              <svg class="arr" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5"></path></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Artículo -->
+        <article class="glass card spot pcard s4 reveal" id="publicacion">
+          <div class="pcard-top">
+            <span class="path"><span class="path-home">~</span><span class="path-dir">/publicaciones/</span>articulo</span>
+            <span class="meta mono">CEIAAIT · 2025</span>
+          </div>
+          <div class="viz viz-reg" data-regression>
+            <svg class="reg-line" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <path class="draw" pathLength="1" d="M2.4 88 L97.6 16.5"></path>
+            </svg>
+            <span class="viz-eq mono">ŷ = β₀ + β₁x</span>
+          </div>
+          <div class="pcard-head">
+            <h3 class="h3-xs">¿Qué tan vulnerable es la regresión lineal?</h3>
+            <p class="small">Programé los experimentos: con datos reales el R² supera 0.96; con ruido cae hasta ≈ 0.4.</p>
+          </div>
+          <div class="pipe mono pcard-end">
+            <span>NumPy</span><span class="dim">·</span><span>scikit-learn</span>
+            <span class="grow"></span>
+            <a class="link" href="https://virtual.cuautitlan.unam.mx/intar/memoriasceiaait/wp-content/uploads/sites/19/2025/12/118-Que-tan-vulnerable-es-la-regresion-lineal-CEIAAIT_2025-Jose-de-Jesus-Angel.pdf" target="_blank" rel="noopener">Leer
+              <svg class="arr" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5"></path></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Tours -->
+        <article class="glass card spot pcard s4 reveal">
+          <div class="pcard-top">
+            <span class="path"><span class="path-home">~</span><span class="path-dir">/proyectos/</span>automatizacion</span>
+            <span class="status"><span class="spinner" aria-hidden="true"></span>en ejecución</span>
+          </div>
+          <div class="rows">
+            <div class="row sub"><span class="mono meta">01</span><span class="row-name">Descarga de HubSpot</span><span class="mono meta">API</span></div>
+            <div class="row sub"><span class="mono meta">02</span><span class="row-name">Filtra el día del tour</span><span class="mono meta">regex</span></div>
+            <div class="row sub"><span class="mono meta">03</span><span class="row-name">Norte y Sur en la plantilla</span><span class="mono meta">xlsx</span></div>
+            <div class="row sub"><span class="mono meta">04</span><span class="row-name">Envío por correo</span><span class="mono meta">smtp</span></div>
+          </div>
+          <div class="pcard-head">
+            <h3 class="h3-xs">Registros de tours universitarios</h3>
+            <p class="small">Corre sola cada mes con GitHub Actions y guarda los registros en Google Cloud.</p>
+          </div>
+          <div class="pipe mono pcard-end">
+            <span>Python</span><span class="dim">·</span><span>pandas</span>
+            <span class="grow"></span>
+            <a class="link" href="https://github.com/cvz-dev/Automatizador-tours" target="_blank" rel="noopener">Código
+              <svg class="arr" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5"></path></svg>
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ CERTIFICADOS ============ -->
+    <section class="section wrap" id="certificados">
+      <div class="head-row">
+        <div class="head-titles">
+          <p class="section-label mono reveal">03<span class="rule"></span>Certificados</p>
+          <h2 class="section-title" data-lines>Formación complementaria</h2>
+        </div>
+        <p class="head-note reveal">Cursos y certificaciones.</p>
+      </div>
+      <div class="certs">
+        <a class="glass card spot cert reveal" href="#">
+          <div class="cert-top"><span class="mono meta">[EMISOR] · [AÑO]</span><svg class="arr" width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5"></path></svg></div>
+          <span class="cert-name">[NOMBRE DEL CERTIFICADO]</span>
+        </a>
+        <a class="glass card spot cert reveal" href="#">
+          <div class="cert-top"><span class="mono meta">[EMISOR] · [AÑO]</span><svg class="arr" width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5"></path></svg></div>
+          <span class="cert-name">[NOMBRE DEL CERTIFICADO]</span>
+        </a>
+        <a class="glass card spot cert reveal" href="#">
+          <div class="cert-top"><span class="mono meta">[EMISOR] · [AÑO]</span><svg class="arr" width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5"></path></svg></div>
+          <span class="cert-name">[NOMBRE DEL CERTIFICADO]</span>
+        </a>
+        <a class="glass card spot cert reveal" href="#">
+          <div class="cert-top"><span class="mono meta">[EMISOR] · [AÑO]</span><svg class="arr" width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5"></path></svg></div>
+          <span class="cert-name">[NOMBRE DEL CERTIFICADO]</span>
+        </a>
+        <a class="glass card spot cert reveal" href="#">
+          <div class="cert-top"><span class="mono meta">[EMISOR] · [AÑO]</span><svg class="arr" width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5"></path></svg></div>
+          <span class="cert-name">[NOMBRE DEL CERTIFICADO]</span>
+        </a>
+        <a class="glass card spot cert reveal" href="#">
+          <div class="cert-top"><span class="mono meta">[EMISOR] · [AÑO]</span><svg class="arr" width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5"></path></svg></div>
+          <span class="cert-name">[NOMBRE DEL CERTIFICADO]</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============ CONTACTO ============ -->
+    <section class="section wrap contact ledfield" id="contacto">
+      <div class="led-spot" aria-hidden="true"></div>
+      <p class="section-label mono reveal">04<span class="rule"></span>Contacto</p>
+      <div class="contact-word reveal">
+        <h2 class="dot big-word" aria-label="Hablemos"><span class="hl">H</span><span class="hl">A</span><span class="hl">B</span><span class="hl">L</span><span class="hl">E</span><span class="hl">M</span><span class="hl">O</span><span class="hl">S</span></h2>
+      </div>
+      <p class="contact-lead reveal">¿Tienes un proyecto, una vacante o una idea? Escríbeme y lo platicamos.</p>
+      <div class="contact-actions reveal">
+        <div class="email-group">
+          <a class="btn btn-solid btn-lg magnet" href="mailto:sebastian.rod.arellano@gmail.com" data-email="sebastian.rod.arellano@gmail.com">sebastian.rod.arellano@gmail.com</a>
+          <button class="btn btn-glass glass btn-icon magnet copy-btn" type="button" aria-label="Copiar correo">
+            <svg class="icon-copy" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="6" width="9" height="9" rx="2"></rect><path d="M12 6V4.5A1.5 1.5 0 0 0 10.5 3h-6A1.5 1.5 0 0 0 3 4.5v6A1.5 1.5 0 0 0 4.5 12H6"></path></svg>
+            <svg class="icon-check" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 9.5l3.5 3.5 7.5-8"></path></svg>
+          </button>
+        </div>
+        <a class="btn btn-glass glass btn-lg magnet" href="https://github.com/cvz-dev" target="_blank" rel="noopener">GitHub
+          <svg class="arr" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5"></path></svg>
+        </a>
+        <a class="btn btn-glass glass btn-lg magnet" href="https://www.linkedin.com/in/sebastian-rodriguez-a-dev/" target="_blank" rel="noopener">LinkedIn
+          <svg class="arr" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5"></path></svg>
+        </a>
+        <a class="btn btn-glass glass btn-lg magnet" href="#">Descargar CV
+          <svg class="arr-down" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M8 3v8M4.5 7.5 8 11l3.5-3.5M3 13.5h10"></path></svg>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer wrap mono">
+    <span>© 2026 Sebastian Rodríguez Arellano</span>
+    <a class="navlink" href="#inicio">Volver arriba ↑</a>
+  </footer>
+  <!-- Aviso global (correo copiado, etc.) -->
+  <span class="toast glass mono" role="status" aria-live="polite"></span>
+</body>
+</html>
