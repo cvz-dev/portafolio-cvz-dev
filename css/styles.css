@@ -436,7 +436,7 @@ a:hover .arr-down { translate: 0 3px; }
   display: flex; flex-direction: column; gap: 24px;
 }
 .pcard.s4 { gap: 20px; }
-.pcard-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.pcard-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 12px; }
 /* Etiqueta de tarjeta como ruta de terminal: ~ en acento, carpeta tenue y el último tramo en blanco */
 .path { font-family: var(--font-mono); font-size: 12px; letter-spacing: .02em; color: var(--text); white-space: nowrap; }
 .path-home { color: var(--accent); }
@@ -459,9 +459,20 @@ a:hover .arr-down { translate: 0 3px; }
 .pcard-foot { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted-2); }
 .split-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 /* Tarjetas chicas: misma estructura y misma altura de gráfica, el pie siempre abajo */
-.pcard.s4 .ring, .pcard.s4 .viz-reg, .pcard.s4 .rows { flex: none; height: 220px; min-height: 0; }
-.pcard.s4 .rows { justify-content: center; gap: 8px; }
-.pcard.s4 .row { padding: 11px 14px; }
+.pcard.s4 .ring, .pcard.s4 .reg, .pcard.s4 .rows { flex: none; height: 280px; min-height: 0; }
+.pcard.s4 .viz-reg { flex: 1 1 auto; min-height: 0; }
+/* Si el enlace no cabe junto a las tecnologías, baja en las tres tarjetas por igual (no solo en la más larga) */
+.pcard.s4 .pipe { container-type: inline-size; }
+@container (max-width: 330px) { .pcard.s4 .pipe .grow { flex-basis: 100%; height: 0; } }
+.pcard.s4 .rows { justify-content: center; gap: 10px; }
+/* Los pasos se reparten todo el alto del bloque visual */
+.pcard.s4 .row { flex: 1 1 0; padding: 0 20px; border-radius: 18px; gap: 16px; }
+.pcard.s4 .row-name { font-size: 16px; }
+.pcard.s4 .row .meta { font-size: 12px; }
+/* Anillo WIN al tamaño del bloque visual (el SVG escala con su viewBox) */
+.pcard.s4 .ringwrap { width: 250px; height: 250px; }
+.pcard.s4 .ringwrap svg { width: 100%; height: 100%; }
+.pcard.s4 .win { font-size: 58px; }
 .pcard-end { margin-top: auto; }
 .pcard-end .link { margin-left: auto; } /* si no cabe en una línea, el enlace baja pero sigue a la derecha */
 
@@ -471,8 +482,7 @@ a:hover .arr-down { translate: 0 3px; }
 }
 .viz-emb { min-height: 220px; }
 .viz-reg { min-height: 170px; border-radius: 20px; }
-.viz-note { position: absolute; left: 18px; bottom: 14px; font-size: 10px; color: var(--muted-2); }
-.viz-eq { position: absolute; right: 14px; top: 12px; font-size: 10px; color: var(--muted-2); }
+.viz-note { position: absolute; left: 18px; bottom: 14px; font-size: 10px; color: var(--muted-2); pointer-events: none; }
 .pt { position: absolute; }
 .pt i {
   display: block; border-radius: 50%;
@@ -480,13 +490,26 @@ a:hover .arr-down { translate: 0 3px; }
   transition: scale .7s var(--ease);
 }
 .pcard:hover .pt i { scale: 1.5; }
-.reg-pt { position: absolute; width: 5px; height: 5px; margin: -2.5px 0 0 -2.5px; border-radius: 50%; background: #D9D9D9; }
-.reg-line { position: absolute; inset: 0; width: 100%; height: 100%; }
-.draw {
-  fill: none; stroke: var(--accent); stroke-width: .8; stroke-linecap: round;
-  stroke-dasharray: 1; stroke-dashoffset: 0;
-  filter: drop-shadow(0 0 6px var(--accent));
+/* Regresión interactiva: lecturas del modelo arriba, canvas con controles abajo */
+.reg { display: flex; flex-direction: column; gap: 14px; }
+.reg-stats { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 10px 20px; }
+.reg-stat { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.reg-stat-end { flex-direction: row; gap: 16px; margin-left: auto; text-align: right; }
+.reg-stat-end > div { display: flex; flex-direction: column; gap: 6px; }
+.reg-val { font-size: clamp(17px, 1.3vw, 24px); font-weight: 900; line-height: 1; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.reg-val.accent { text-shadow: 0 0 14px rgba(83, 163, 234, .45); }
+.viz-reg canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: crosshair; }
+.reg-actions { position: absolute; right: 10px; bottom: 9px; display: flex; gap: 6px; }
+.reg-btn {
+  height: 26px; padding: 0 12px; border-radius: 999px;
+  font-size: 10px; color: var(--muted);
+  background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .09);
+  transition: color .35s, background-color .35s, border-color .35s;
 }
+.reg-btn:hover { color: var(--text); background-color: rgba(255, 255, 255, .1); border-color: rgba(255, 255, 255, .2); }
+.reg-btn:active { transform: scale(.96); }
+.reg-btn-ghost { background: transparent; }
+.viz-reg .viz-note { top: 14px; bottom: auto; }
 .clabel {
   position: absolute; font-size: 10px; color: #C9C9C9; pointer-events: none;
   opacity: 0; translate: 0 6px; transition: opacity .6s, translate .6s var(--ease);
@@ -535,7 +558,19 @@ a:hover .arr-down { translate: 0 3px; }
   /* Sin la sombra de .glass: en la cuadrícula caía sobre la fila de abajo y su vidrio la desenfocaba en manchas */
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .09);
 }
-.cert-top { display: flex; justify-content: space-between; color: var(--muted); }
+.cert-top { display: flex; justify-content: space-between; align-items: center; color: var(--muted); }
+.cert-issuer { display: flex; align-items: center; gap: 12px; }
+/* Logo del emisor: gris como el resto, toma el color de la marca (--brand) al pasar el cursor */
+.cert-logo {
+  display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px;
+  background: rgba(0, 0, 0, .35); border: 1px solid rgba(255, 255, 255, .08);
+  color: #BDBDBD; transition: color .5s, border-color .5s, box-shadow .5s;
+}
+.cert-logo svg { width: 22px; height: 22px; }
+.cert:hover .cert-logo {
+  color: var(--brand, var(--text)); border-color: color-mix(in srgb, var(--brand, #fff) 40%, transparent);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--brand, #fff) 25%, transparent);
+}
 .cert-name { font-size: clamp(18px, 1.4vw, 20px); font-weight: 500; letter-spacing: -.01em; }
 
 /* Contacto */
@@ -707,6 +742,7 @@ a:hover .arr-down { translate: 0 3px; }
   .s4:last-child { grid-column: span 2; }
   .pcard { min-height: 440px; }
   .certs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cert:last-child:nth-child(odd) { grid-column: span 2; } /* el último, si queda solo, ocupa la fila */
 }
 
 @media (max-width: 720px) {
@@ -724,8 +760,14 @@ a:hover .arr-down { translate: 0 3px; }
   .s7, .s5, .s4, .s4:last-child { grid-column: span 1; }
   .pcard { min-height: 0; border-radius: 28px; }
   .certs { grid-template-columns: minmax(0, 1fr); }
-  .cert { height: 132px; padding: 22px; }
+  .cert:last-child:nth-child(odd) { grid-column: auto; }
+  .cert { height: auto; min-height: 132px; gap: 20px; padding: 22px; }
   .contact-actions { flex-direction: column; align-self: stretch; }
+  /* El correo no cabía junto al botón de copiar y empujaba todo a la derecha: la letra se ajusta al ancho */
+  .contact-actions .btn-lg { height: 52px; }
+  .email-group { min-width: 0; gap: 8px; }
+  .email-group .btn-lg { min-width: 0; padding: 0 14px; font-size: clamp(11px, 5.4vw - 5.9px, 16px); }
+  .email-group .btn-icon { width: 52px; height: 52px; flex-shrink: 0; }
   .footer { flex-direction: column; justify-content: center; padding-top: 28px; padding-bottom: 28px; text-align: center; }
 }
 

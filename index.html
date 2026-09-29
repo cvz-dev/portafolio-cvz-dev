@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Doto:wght@500;700;900&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="css/lenis.css">
-  <link rel="stylesheet" href="css/styles.css?v=24">
+  <link rel="stylesheet" href="css/styles.css?v=34">
 
   <script src="js/vendor/gsap.min.js" defer></script>
   <script src="js/vendor/ScrollTrigger.min.js" defer></script>
@@ -29,7 +29,8 @@
   <script src="js/vendor/lenis.min.js" defer></script>
   <script src="js/scramble.js?v=8" defer></script>
   <script src="js/terminal.js?v=3" defer></script>
-  <script src="js/main.js?v=27" defer></script>
+  <script src="js/regresion.js?v=1" defer></script>
+  <script src="js/main.js?v=28" defer></script>
 </head>
 <body class="dotgrid" data-hero="terminal" data-mono="SR" data-cursor="puntos">
 
@@ -297,18 +298,32 @@
         <!-- Artículo -->
         <article class="glass card spot pcard s4 reveal" id="publicacion">
           <div class="pcard-top">
-            <span class="path"><span class="path-home">~</span><span class="path-dir">/publicaciones/</span>articulo</span>
-            <span class="meta mono">CEIAAIT · 2025</span>
+            <span class="path"><span class="path-home">~</span><span class="path-dir">/publicaciones/</span>ceiaait</span>
+            <span class="meta mono">2025</span>
           </div>
-          <div class="viz viz-reg" data-regression>
-            <svg class="reg-line" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-              <path class="draw" pathLength="1" d="M2.4 88 L97.6 16.5"></path>
-            </svg>
-            <span class="viz-eq mono">ŷ = β₀ + β₁x</span>
+          <div class="reg" data-regression>
+            <div class="reg-stats" aria-live="polite">
+              <div class="reg-stat">
+                <span class="mono meta">Modelo</span>
+                <span class="reg-val dot" data-reg-eq>y = —</span>
+              </div>
+              <div class="reg-stat reg-stat-end">
+                <div><span class="mono meta">R²</span><span class="reg-val dot accent" data-reg-r2>—</span></div>
+                <div><span class="mono meta">N</span><span class="reg-val dot" data-reg-n>0</span></div>
+              </div>
+            </div>
+            <div class="viz viz-reg">
+              <canvas aria-label="Gráfica de regresión lineal: haz clic para añadir puntos"></canvas>
+              <span class="viz-note mono">Clic para añadir puntos</span>
+              <div class="reg-actions">
+                <button type="button" class="reg-btn mono" data-reg-random>Aleatorio</button>
+                <button type="button" class="reg-btn reg-btn-ghost mono" data-reg-clear>Limpiar</button>
+              </div>
+            </div>
           </div>
           <div class="pcard-head">
             <h3 class="h3-xs">¿Qué tan vulnerable es la regresión lineal?</h3>
-            <p class="small">Programé los experimentos: con datos reales el R² supera 0.96; con ruido cae hasta ≈ 0.4.</p>
+            <p class="small">Estudio sobre cómo el ruido en los datos degrada la regresión lineal. Fui parte del desarrollo de los experimentos.</p>
           </div>
           <div class="pipe mono pcard-end">
             <span>NumPy</span><span class="dim">·</span><span>scikit-learn</span>
@@ -322,7 +337,7 @@
         <!-- Tours -->
         <article class="glass card spot pcard s4 reveal">
           <div class="pcard-top">
-            <span class="path"><span class="path-home">~</span><span class="path-dir">/proyectos/</span>automatizacion</span>
+            <span class="path"><span class="path-home">~</span><span class="path-dir">/proyectos/</span>tours</span>
             <span class="status"><span class="spinner" aria-hidden="true"></span>en ejecución</span>
           </div>
           <div class="rows">
@@ -356,29 +371,45 @@
         <p class="head-note reveal">Cursos y certificaciones.</p>
       </div>
       <div class="certs">
-        <a class="glass card spot cert reveal" href="#">
-          <div class="cert-top"><span class="mono meta">[EMISOR] · [AÑO]</span><svg class="arr" width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5"></path></svg></div>
-          <span class="cert-name">[NOMBRE DEL CERTIFICADO]</span>
+        <a class="glass card spot cert reveal" style="--brand:#FB4C60" href="https://coursera.org/share/d5c3c83a72e6dd784e56e24d8336bebd" target="_blank" rel="noopener">
+          <div class="cert-top">
+            <span class="cert-issuer">
+              <span class="cert-logo" aria-hidden="true"><svg viewBox="25 136 322 322" fill="currentColor" fill-rule="evenodd"><path d="M25 297a161 161 0 1 0 322 0a161 161 0 1 0 -322 0zM63 270a123 123 0 1 0 246 0a123 123 0 1 0 -246 0zM79 258a107 107 0 1 0 214 0a107 107 0 1 0 -214 0zM106.5 241.5a79.5 79.5 0 1 0 159 0a79.5 79.5 0 1 0 -159 0zM116.5 236.5a69.5 69.5 0 1 0 139 0a69.5 69.5 0 1 0 -139 0zM150.5 209.5a35.5 35.5 0 1 0 71 0a35.5 35.5 0 1 0 -71 0z"/></svg></span>
+              <span class="mono meta">DeepLearning.AI · 2026</span>
+            </span><svg class="arr" width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5"></path></svg></div>
+          <span class="cert-name">Advanced Learning Algorithms</span>
         </a>
-        <a class="glass card spot cert reveal" href="#">
-          <div class="cert-top"><span class="mono meta">[EMISOR] · [AÑO]</span><svg class="arr" width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5"></path></svg></div>
-          <span class="cert-name">[NOMBRE DEL CERTIFICADO]</span>
+        <a class="glass card spot cert reveal" style="--brand:#76B900" href="https://learn.nvidia.com/certificates?id=MhZGtKLjQdGByoP0c1rrNQ" target="_blank" rel="noopener">
+          <div class="cert-top">
+            <span class="cert-issuer">
+              <span class="cert-logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8.948 8.798v-1.43a6.7 6.7 0 0 1 .424-.018c3.922-.124 6.493 3.374 6.493 3.374s-2.774 3.851-5.75 3.851c-.398 0-.787-.062-1.158-.185v-4.346c1.528.185 1.837.857 2.747 2.385l2.04-1.714s-1.492-1.952-4-1.952a6.016 6.016 0 0 0-.796.035m0-4.735v2.138l.424-.027c5.45-.185 9.01 4.47 9.01 4.47s-4.08 4.964-8.33 4.964c-.37 0-.733-.035-1.095-.097v1.325c.3.035.61.062.91.062 3.957 0 6.82-2.023 9.593-4.408.459.371 2.34 1.263 2.73 1.652-2.633 2.208-8.772 3.984-12.253 3.984-.335 0-.653-.018-.971-.053v1.864H24V4.063zm0 10.326v1.131c-3.657-.654-4.673-4.46-4.673-4.46s1.758-1.944 4.673-2.262v1.237H8.94c-1.528-.186-2.73 1.245-2.73 1.245s.68 2.412 2.739 3.11M2.456 10.9s2.164-3.197 6.5-3.533V6.201C4.153 6.59 0 10.653 0 10.653s2.35 6.802 8.948 7.42v-1.237c-4.84-.6-6.492-5.936-6.492-5.936z"/></svg></span>
+              <span class="mono meta">NVIDIA · 2025</span>
+            </span><svg class="arr" width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5"></path></svg></div>
+          <span class="cert-name">Fundamentals of Accelerated Data Science</span>
         </a>
-        <a class="glass card spot cert reveal" href="#">
-          <div class="cert-top"><span class="mono meta">[EMISOR] · [AÑO]</span><svg class="arr" width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5"></path></svg></div>
-          <span class="cert-name">[NOMBRE DEL CERTIFICADO]</span>
+        <a class="glass card spot cert reveal" style="--brand:#FB4C60" href="https://www.coursera.org/account/accomplishments/verify/U30C4VCZ3P30" target="_blank" rel="noopener">
+          <div class="cert-top">
+            <span class="cert-issuer">
+              <span class="cert-logo" aria-hidden="true"><svg viewBox="25 136 322 322" fill="currentColor" fill-rule="evenodd"><path d="M25 297a161 161 0 1 0 322 0a161 161 0 1 0 -322 0zM63 270a123 123 0 1 0 246 0a123 123 0 1 0 -246 0zM79 258a107 107 0 1 0 214 0a107 107 0 1 0 -214 0zM106.5 241.5a79.5 79.5 0 1 0 159 0a79.5 79.5 0 1 0 -159 0zM116.5 236.5a69.5 69.5 0 1 0 139 0a69.5 69.5 0 1 0 -139 0zM150.5 209.5a35.5 35.5 0 1 0 71 0a35.5 35.5 0 1 0 -71 0z"/></svg></span>
+              <span class="mono meta">DeepLearning.AI · 2025</span>
+            </span><svg class="arr" width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5"></path></svg></div>
+          <span class="cert-name">Supervised Machine Learning: Regression and Classification</span>
         </a>
-        <a class="glass card spot cert reveal" href="#">
-          <div class="cert-top"><span class="mono meta">[EMISOR] · [AÑO]</span><svg class="arr" width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5"></path></svg></div>
-          <span class="cert-name">[NOMBRE DEL CERTIFICADO]</span>
+        <a class="glass card spot cert reveal" style="--brand:#FF9900" href="https://www.coursera.org/account/accomplishments/verify/2W46AVHKJ4W5" target="_blank" rel="noopener">
+          <div class="cert-top">
+            <span class="cert-issuer">
+              <span class="cert-logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39-.046.525.13.12.174.09.336-.12.48-.256.19-.6.41-1.006.654-1.244.743-2.64 1.316-4.185 1.726a17.617 17.617 0 01-10.951-.577 17.88 17.88 0 01-5.43-3.35c-.1-.074-.151-.15-.151-.22 0-.047.021-.09.051-.13zm6.565-6.218c0-1.005.247-1.863.743-2.577.495-.71 1.17-1.25 2.04-1.615.796-.335 1.756-.575 2.912-.72.39-.046 1.033-.103 1.92-.174v-.37c0-.93-.105-1.558-.3-1.875-.302-.43-.78-.65-1.44-.65h-.182c-.48.046-.896.196-1.246.46-.35.27-.575.63-.675 1.096-.06.3-.206.465-.435.51l-2.52-.315c-.248-.06-.372-.18-.372-.39 0-.046.007-.09.022-.15.247-1.29.855-2.25 1.82-2.88.976-.616 2.1-.975 3.39-1.05h.54c1.65 0 2.957.434 3.888 1.29.135.15.27.3.405.48.12.165.224.314.283.45.075.134.15.33.195.57.06.254.105.42.135.51.03.104.062.3.076.615.01.313.02.493.02.553v5.28c0 .376.06.72.165 1.036.105.313.21.54.315.674l.51.674c.09.136.136.256.136.36 0 .12-.06.226-.18.314-1.2 1.05-1.86 1.62-1.963 1.71-.165.135-.375.15-.63.045a6.062 6.062 0 01-.526-.496l-.31-.347a9.391 9.391 0 01-.317-.42l-.3-.435c-.81.886-1.603 1.44-2.4 1.665-.494.15-1.093.227-1.83.227-1.11 0-2.04-.343-2.76-1.034-.72-.69-1.08-1.665-1.08-2.94l-.05-.076zm3.753-.438c0 .566.14 1.02.425 1.364.285.34.675.512 1.155.512.045 0 .106-.007.195-.02.09-.016.134-.023.166-.023.614-.16 1.08-.553 1.424-1.178.165-.28.285-.58.36-.91.09-.32.12-.59.135-.8.015-.195.015-.54.015-1.005v-.54c-.84 0-1.484.06-1.92.18-1.275.36-1.92 1.17-1.92 2.43l-.035-.02zm9.162 7.027c.03-.06.075-.11.132-.17.362-.243.714-.41 1.05-.5a8.094 8.094 0 011.612-.24c.14-.012.28 0 .41.03.65.06 1.05.168 1.172.33.063.09.099.228.099.39v.15c0 .51-.149 1.11-.424 1.8-.278.69-.664 1.248-1.156 1.68-.073.06-.14.09-.197.09-.03 0-.06 0-.09-.012-.09-.044-.107-.12-.064-.24.54-1.26.806-2.143.806-2.64 0-.15-.03-.27-.087-.344-.145-.166-.55-.257-1.224-.257-.243 0-.533.016-.87.046-.363.045-.7.09-1 .135-.09 0-.148-.014-.18-.044-.03-.03-.036-.047-.02-.077 0-.017.006-.03.02-.063v-.06z"/></svg></span>
+              <span class="mono meta">Amazon · 2025</span>
+            </span><svg class="arr" width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5"></path></svg></div>
+          <span class="cert-name">Introduction to Software Development</span>
         </a>
-        <a class="glass card spot cert reveal" href="#">
-          <div class="cert-top"><span class="mono meta">[EMISOR] · [AÑO]</span><svg class="arr" width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5"></path></svg></div>
-          <span class="cert-name">[NOMBRE DEL CERTIFICADO]</span>
-        </a>
-        <a class="glass card spot cert reveal" href="#">
-          <div class="cert-top"><span class="mono meta">[EMISOR] · [AÑO]</span><svg class="arr" width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5"></path></svg></div>
-          <span class="cert-name">[NOMBRE DEL CERTIFICADO]</span>
+        <a class="glass card spot cert reveal" style="--brand:#4589FF" href="https://www.coursera.org/account/accomplishments/verify/177I7OLMOYDV" target="_blank" rel="noopener">
+          <div class="cert-top">
+            <span class="cert-issuer">
+              <span class="cert-logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.544 15.993c.038 0 .06-.017.06-.053v-.036c0-.035-.022-.052-.06-.052h-.09v.14zm-.09.262h-.121v-.498h.225c.112 0 .169.066.169.157 0 .079-.036.129-.09.15l.111.19h-.133l-.092-.17h-.07zm.434-.222v-.062c0-.2-.157-.357-.363-.357a.355.355 0 00-.363.357v.062c0 .2.156.358.363.358a.355.355 0 00.363-.358zm-.838-.03c0-.28.212-.492.475-.492.264 0 .475.213.475.491 0 .279-.211.491-.475.491a.477.477 0 01-.475-.49zM16.21 8.13l-.216-.624h-3.56v.624zm.413 1.19l-.216-.623h-3.973v.624zm2.65 7.147h3.107v-.624h-3.108zm0-1.192h3.107v-.623h-3.108zm0-1.19h1.864v-.624h-1.865zm0-1.191h1.864v-.624h-1.865zm0-1.191h1.864v-.624h-3.555l-.175.504-.175-.504h-3.555v.624h1.865v-.574l.2.574h3.33l.2-.574zm1.864-1.815h-3.142l-.217.624h3.359zm-7.46 3.006h1.865v-.624h-1.865zm0 1.19h1.865v-.623h-1.865zm-1.243 1.191h3.108v-.623h-3.108zm0 1.192h3.108v-.624h-3.108zm6.386-8.961l-.216.624h3.776v-.624zm-.629 1.815h4.19v-.624h-3.974zm-4.514 1.19h3.359l-.216-.623h-3.143zm2.482 2.383h2.496l.218-.624h-2.932zm.417 1.19h1.662l.218-.623h-2.098zm.416 1.191h.83l.218-.623h-1.266zm.414 1.192l.217-.624h-.432zm-12.433-.006l4.578.006c.622 0 1.18-.237 1.602-.624h-6.18zm4.86-3v.624h2.092c0-.216-.03-.425-.083-.624zm-3.616.624h1.865v-.624H6.217zm3.617-3.573h2.008c.053-.199.083-.408.083-.624H9.834zm-3.617 0h1.865v-.624H6.217zM9.55 7.507H4.973v.624h6.18a2.36 2.36 0 00-1.602-.624zm2.056 1.191H4.973v.624h6.884a2.382 2.382 0 00-.25-.624zm-5.39 2.382v.624h4.87c.207-.176.382-.387.519-.624zm4.87 1.191h-4.87v.624h5.389a2.39 2.39 0 00-.519-.624zm-6.114 3.006h6.634c.11-.193.196-.402.25-.624H4.973zM0 8.13h4.352v-.624H0zm0 1.191h4.352v-.624H0zm1.243 1.191h1.865v-.624H1.243zm0 1.191h1.865v-.624H1.243zm0 1.19h1.865v-.623H1.243zm0 1.192h1.865v-.624H1.243zM0 15.276h4.352v-.623H0zm0 1.192h4.352v-.624H0Z"/></svg></span>
+              <span class="mono meta">IBM · 2025</span>
+            </span><svg class="arr" width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5"></path></svg></div>
+          <span class="cert-name">Python for Data Science, AI &amp; Development</span>
         </a>
       </div>
     </section>

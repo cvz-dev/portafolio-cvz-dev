@@ -123,26 +123,11 @@
     viz.prepend(frag);
   }
 
-  function buildRegression() {
-    const viz = $('[data-regression]');
-    if (!viz) return;
-    const rnd = seeded(7);
-    const frag = document.createDocumentFragment();
-    for (let i = 0; i < 22; i++) {
-      const x = 4 + i * 4.3;
-      const y = Math.max(6, Math.min(94, 88 - 0.751 * (x - 2.4) + (rnd() - 0.5) * 22));
-      const pt = document.createElement('span');
-      pt.className = 'reg-pt';
-      pt.style.left = `${x.toFixed(2)}%`;
-      pt.style.top = `${y.toFixed(2)}%`;
-      frag.appendChild(pt);
-    }
-    viz.prepend(frag);
-  }
-
   buildMonogram(body.dataset.mono === 'CVZ' ? 'CVZ' : 'SR');
   buildEmbeddings();
-  buildRegression();
+  // Artículo: regresión lineal interactiva (js/regresion.js)
+  const regression = $('[data-regression]');
+  if (regression && window.initRegression) window.initRegression(regression, { reduceMotion });
 
   // Nombre del hero: letras que se revuelven cerca del cursor (js/scramble.js)
   const heroName = $('.hero-name');
@@ -447,9 +432,8 @@
     const reveals = $$('.reveal');
     gsap.set(reveals, { autoAlpha: 0, y: 36, filter: 'blur(10px)' });
     gsap.set('.reveal .sub', { autoAlpha: 0, y: 14 });
-    gsap.set('.pt, .reg-pt', { autoAlpha: 0, scale: 0 });
+    gsap.set('.pt', { autoAlpha: 0, scale: 0 });
     gsap.set('.bars .fill', { scaleX: 0 });
-    gsap.set('.draw', { strokeDashoffset: 1 });
     gsap.set('.led-in, .hl, .hero-name', { autoAlpha: 0 });
     gsap.set('.tilt', { '--rx': 0, '--ry': 0 });
     gsap.set('.magnet', { '--tx': 0, '--ty': 0 });
@@ -580,24 +564,12 @@
       if (subs.length) tl.to(subs, { autoAlpha: 1, y: 0, duration: 0.9, stagger: 0.06, clearProps: 'transform' }, 0);
       const pts = $$('.pt', el);
       if (pts.length) tl.to(pts, { autoAlpha: 1, scale: 1, duration: 0.6, ease: 'back.out(2)', stagger: 0.012 }, 0.05);
-      const regPts = $$('.reg-pt', el);
-      if (regPts.length) tl.to(regPts, { autoAlpha: 1, scale: 1, duration: 0.5, ease: 'back.out(2)', stagger: 0.035 }, 0.05);
-      const draw = $('.draw', el);
-      if (draw) tl.to(draw, { strokeDashoffset: 0, duration: 1.6, ease: 'power3.inOut' }, 0.5);
       const bars = $$('.bars .fill', el);
       if (bars.length) tl.to(bars, { scaleX: 1, duration: 0.9, stagger: 0.12 }, 0.3);
       const led = $$('.led-in', el);
       if (led.length) tl.add(ledFlicker(led), 0.1);
       const letters = $$('.hl', el);
       if (letters.length) tl.add(ledFlicker(letters, { stagger: 0.07 }), 0);
-    }
-
-    // Artículo: la línea de regresión se vuelve a trazar al pasar el cursor
-    const regCard = $('[data-regression]')?.closest('.pcard');
-    if (regCard) {
-      regCard.addEventListener('mouseenter', () => {
-        gsap.fromTo($('.draw', regCard), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 1.3, ease: 'power3.inOut', overwrite: true });
-      });
     }
 
     /* ---------- Nav compacta y sección activa ---------- */
