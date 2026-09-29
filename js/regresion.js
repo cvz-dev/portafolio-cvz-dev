@@ -227,6 +227,5 @@
     }, { threshold: 0.35 }).observe(canvas);
 
     updateReadout();
-    return { randomize, clear };
   };
 })();

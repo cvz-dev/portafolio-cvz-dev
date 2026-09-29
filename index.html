@@ -21,18 +21,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Doto:wght@500;700;900&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="css/lenis.css">
-  <link rel="stylesheet" href="css/styles.css?v=34">
+  <link rel="stylesheet" href="css/styles.css?v=36">
 
   <script src="js/vendor/gsap.min.js" defer></script>
   <script src="js/vendor/ScrollTrigger.min.js" defer></script>
   <script src="js/vendor/SplitText.min.js" defer></script>
   <script src="js/vendor/lenis.min.js" defer></script>
-  <script src="js/scramble.js?v=8" defer></script>
+  <script src="js/scramble.js?v=9" defer></script>
   <script src="js/terminal.js?v=3" defer></script>
-  <script src="js/regresion.js?v=1" defer></script>
-  <script src="js/main.js?v=28" defer></script>
+  <script src="js/regresion.js?v=2" defer></script>
+  <script src="js/main.js?v=29" defer></script>
 </head>
-<body class="dotgrid" data-hero="terminal" data-mono="SR" data-cursor="puntos">
+<body class="dotgrid">
 
   <!-- ============ NAV ============ -->
   <header>
@@ -82,85 +82,33 @@
           </div>
         </div>
 
-        <!-- Visual del hero: monograma / mapa / terminal (data-hero en <body>) -->
+        <!-- Visual del hero: terminal interactiva (js/terminal.js) -->
         <div class="device intro">
           <div class="tilt">
-            <div class="glow glow-accent" aria-hidden="true"></div>
-            <div class="glow glow-white" aria-hidden="true"></div>
-
-            <!-- 1 · Monograma -->
-            <div class="visual visual-mono">
-              <div class="glass float panel">
-                <svg class="mono-svg" viewBox="0 0 380 480" aria-hidden="true">
-                  <g class="mono-base"></g>
-                  <g class="mono-all"></g>
-                  <g class="mono-lit"></g>
-                  <path d="M56 394 L324 394" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="4" stroke-linecap="round" stroke-dasharray="0.1 12"></path>
-                  <circle class="rec" cx="324" cy="436" r="6"></circle>
-                </svg>
-                <div class="glare" aria-hidden="true"></div>
-                <span class="panel-label mono">Sebastian Rodríguez</span>
+            <div class="term-halo" aria-hidden="true"></div>
+            <div class="term" data-term>
+              <div class="glare term-glare" aria-hidden="true"></div>
+              <div class="term-head mono">
+                <span class="term-rec" aria-hidden="true"></span>
+                <span class="term-path">Terminal · ~/sebastian</span>
+                <span class="term-segs" data-term-segs aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
               </div>
-              <div class="visual-caption mono"><span>Monograma · cvz-dev</span><span>Sistema en línea</span></div>
-            </div>
-
-            <!-- 2 · Mapa de perfil -->
-            <div class="visual visual-map">
-              <div class="glass float panel">
-                <svg viewBox="0 0 380 480" aria-hidden="true">
-                  <g fill="none" stroke="rgba(255,255,255,.07)" stroke-width="11" stroke-linecap="round">
-                    <path d="M163 112.8 A130 130 0 0 0 62.8 213"></path>
-                    <path d="M217 112.8 A130 130 0 0 1 317.2 213"></path>
-                    <path d="M317.2 267 A130 130 0 0 1 217 367.2"></path>
-                    <path d="M163 367.2 A130 130 0 0 1 62.8 267"></path>
-                  </g>
-                  <circle class="spin" cx="190" cy="240" r="92" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="4" stroke-linecap="round" stroke-dasharray="0.1 12"></circle>
-                  <circle class="spin-rev" cx="190" cy="240" r="64" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="3" stroke-linecap="round" stroke-dasharray="0.1 10"></circle>
-                  <g stroke-width="10" stroke-linecap="round">
-                    <path class="lit m1" d="M163 112.8 A130 130 0 0 0 62.8 213"></path>
-                    <path class="lit m2" d="M217 112.8 A130 130 0 0 1 317.2 213"></path>
-                    <path class="lit m3" d="M317.2 267 A130 130 0 0 1 217 367.2"></path>
-                    <path class="lit m4" d="M163 367.2 A130 130 0 0 1 62.8 267"></path>
-                  </g>
-                  <circle class="rec" cx="190" cy="282" r="5"></circle>
-                </svg>
-                <div class="glare" aria-hidden="true"></div>
-                <span class="map-initials dot" data-initials>SR</span>
-                <div class="area lab m1" style="left:26px;top:26px"><span>IA</span><span class="mono">Embeddings</span></div>
-                <div class="area lab m2 right" style="right:26px;top:26px"><span>Desarrollo</span><span class="mono">Plataformas web</span></div>
-                <div class="area lab m3 right" style="right:26px;bottom:26px"><span>Automatización</span><span class="mono">Web scraping</span></div>
-                <div class="area lab m4" style="left:26px;bottom:26px"><span>Investigación</span><span class="mono">Regresión lineal</span></div>
+              <div class="term-body" data-term-body>
+                <div class="term-log" data-term-log role="log" aria-live="polite" aria-label="Salida de la terminal"></div>
+                <label class="term-line">
+                  <span class="t-acc">sebastian:~$</span>
+                  <span class="term-field">
+                    <input class="term-input" data-term-input type="text" aria-label="Comando de la terminal" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="send">
+                    <span class="term-caret" data-term-caret aria-hidden="true"></span>
+                  </span>
+                </label>
               </div>
-              <div class="visual-caption mono"><span>Perfil · 04 áreas</span><span>Sistema en línea</span></div>
-            </div>
-
-            <!-- 3 · Terminal interactiva (js/terminal.js) -->
-            <div class="visual visual-term">
-              <div class="term-halo" aria-hidden="true"></div>
-              <div class="term" data-term>
-                <div class="glare term-glare" aria-hidden="true"></div>
-                <div class="term-head mono">
-                  <span class="term-rec" aria-hidden="true"></span>
-                  <span class="term-path">Terminal · ~/sebastian</span>
-                  <span class="term-segs" data-term-segs aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-                </div>
-                <div class="term-body" data-term-body>
-                  <div class="term-log" data-term-log role="log" aria-live="polite" aria-label="Salida de la terminal"></div>
-                  <label class="term-line">
-                    <span class="t-acc">sebastian:~$</span>
-                    <span class="term-field">
-                      <input class="term-input" data-term-input type="text" aria-label="Comando de la terminal" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="send">
-                      <span class="term-caret" data-term-caret aria-hidden="true"></span>
-                    </span>
-                  </label>
-                </div>
-                <div class="term-quick mono" aria-label="Comandos rápidos">
-                  <button type="button" data-cmd="help">help</button>
-                  <button type="button" data-cmd="proyectos">proyectos</button>
-                  <button type="button" data-cmd="stack">stack</button>
-                  <button type="button" data-cmd="contacto">contacto</button>
-                  <button type="button" data-cmd="scramble">scramble</button>
-                </div>
+              <div class="term-quick mono" aria-label="Comandos rápidos">
+                <button type="button" data-cmd="help">help</button>
+                <button type="button" data-cmd="proyectos">proyectos</button>
+                <button type="button" data-cmd="stack">stack</button>
+                <button type="button" data-cmd="contacto">contacto</button>
+                <button type="button" data-cmd="scramble">scramble</button>
               </div>
             </div>
           </div>

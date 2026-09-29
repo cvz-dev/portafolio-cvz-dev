@@ -11,8 +11,9 @@ css/lenis.css       Estilos base de Lenis
 js/main.js          Interacciones y animaciones
 js/terminal.js      Terminal interactiva del hero (el contenido de los comandos está en DATA, al inicio)
 js/scramble.js      Efecto de letras revueltas en el nombre
+js/regresion.js     Regresión lineal interactiva de la tarjeta del artículo
 js/vendor/          GSAP 3.15 (+ ScrollTrigger, SplitText) y Lenis 1.3, copiados en local
-assets/             Cursores SVG y favicon
+assets/             Cursor SVG, favicon y PDFs (assets/docs)
 netlify.toml        Configuración de despliegue
 ```
 
@@ -22,14 +23,6 @@ netlify.toml        Configuración de despliegue
 python3 -m http.server 5173
 # abrir http://localhost:5173
 ```
-
-Parámetros de prueba en la URL:
-
-- `?hero=terminal | monograma | mapa`: visual del hero
-- `?mono=SR | CVZ`: letras del monograma
-- `?cursor=puntos | blanco | sistema`: puntero
-
-Los valores por defecto están en los atributos `data-*` del `<body>` en `index.html`.
 
 ## Animaciones
 

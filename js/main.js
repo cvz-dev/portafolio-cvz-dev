@@ -14,75 +14,9 @@
   const reduceMotion = media('(prefers-reduced-motion: reduce)');
   const finePointer = media('(hover: hover) and (pointer: fine)');
 
-  /* ---------- Opciones de prueba por URL: ?hero=mapa&mono=CVZ&cursor=blanco ---------- */
-  const params = new URLSearchParams(location.search);
-  const pick = (key, allowed) => (allowed.includes(params.get(key)) ? params.get(key) : null);
-  body.dataset.hero = pick('hero', ['monograma', 'mapa', 'terminal']) || body.dataset.hero;
-  body.dataset.mono = pick('mono', ['SR', 'CVZ']) || body.dataset.mono;
-  body.dataset.cursor = pick('cursor', ['puntos', 'blanco', 'sistema']) || body.dataset.cursor;
-
   /* =========================================================
-     Contenido generado: monograma y visualizaciones
+     Contenido generado: visualizaciones
      ========================================================= */
-  const GLYPHS = (() => {
-    const O = ['0.6,0 1.4,0 2,0.6 2,3.4 1.4,4 0.6,4 0,3.4 0,0.6 0.6,0'];
-    const P = ['0,4 0,0', '0,0 1.5,0 2,0.5 2,1.7 1.5,2.2 0,2.2'];
-    return {
-      C: ['2,0 0.6,0 0,0.6 0,3.4 0.6,4 2,4'],
-      O,
-      P,
-      R: P.concat(['0.9,2.2 2,4']),
-      S: ['2,0.4 1.6,0 0.4,0 0,0.4 0,1.6 0.4,2 1.6,2 2,2.4 2,3.6 1.6,4 0.4,4 0,3.6'],
-      V: ['0,0 1,4 2,0'],
-      Z: ['0,0 2,0 0,4 2,4'],
-    };
-  })();
-
-  function buildMonogram(text) {
-    const svg = $('.mono-svg');
-    if (!svg) return;
-    const letters = text.split('');
-    const three = letters.length > 2;
-    const u = three ? 40 : 56;
-    const gap = three ? 30 : 64;
-    const total = letters.length * 2 * u + (letters.length - 1) * gap;
-    const x0 = (380 - total) / 2;
-    const y0 = three ? 140 : 108;
-    const width = three ? 12 : 14;
-
-    const strokes = [];
-    letters.forEach((ch, li) => {
-      (GLYPHS[ch] || GLYPHS.O).forEach((stroke) => {
-        const pts = stroke.split(' ').map((pt) => {
-          const [x, y] = pt.split(',').map(Number);
-          return `${(x0 + li * (2 * u + gap) + x * u).toFixed(1)} ${(y0 + y * u).toFixed(1)}`;
-        });
-        strokes.push(`M${pts.join(' L')}`);
-      });
-    });
-
-    const fillGroup = (group, extra) => {
-      group.replaceChildren();
-      group.setAttribute('fill', 'none');
-      group.setAttribute('stroke-width', extra.width);
-      group.setAttribute('stroke-linecap', 'round');
-      group.setAttribute('stroke-linejoin', 'round');
-      strokes.forEach((d, i) => {
-        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        path.setAttribute('d', d);
-        if (extra.lit) {
-          path.setAttribute('class', 'lit');
-          path.style.animationDelay = `calc(var(--speed) * ${(i * 0.08).toFixed(2)})`;
-        }
-        group.appendChild(path);
-      });
-    };
-    fillGroup($('.mono-base', svg), { width: width + 1 });
-    fillGroup($('.mono-all', svg), { width });
-    fillGroup($('.mono-lit', svg), { width, lit: true });
-    $$('[data-initials]').forEach((el) => { el.textContent = text; });
-  }
-
   // Generador pseudoaleatorio con semilla: los puntos salen iguales en cada carga.
   function seeded(seed) {
     return () => {
@@ -123,7 +57,6 @@
     viz.prepend(frag);
   }
 
-  buildMonogram(body.dataset.mono === 'CVZ' ? 'CVZ' : 'SR');
   buildEmbeddings();
   // Artículo: regresión lineal interactiva (js/regresion.js)
   const regression = $('[data-regression]');
@@ -186,7 +119,7 @@
     })
     : { boot() {} };
 
-  // Efectos de cursor (solo mouse): luz en tarjetas, cuadrícula del hero, reflejo del panel
+  // Efectos de cursor (solo mouse): luz que sigue al puntero en las tarjetas
   if (finePointer && !reduceMotion) {
     $$('.spot').forEach((el) => {
       el.addEventListener('pointermove', (e) => {
@@ -434,8 +367,7 @@
     gsap.set('.reveal .sub', { autoAlpha: 0, y: 14 });
     gsap.set('.pt', { autoAlpha: 0, scale: 0 });
     gsap.set('.bars .fill', { scaleX: 0 });
-    gsap.set('.led-in, .hl, .hero-name', { autoAlpha: 0 });
-    gsap.set('.tilt', { '--rx': 0, '--ry': 0 });
+    gsap.set('.hl, .hero-name', { autoAlpha: 0 });
     gsap.set('.magnet', { '--tx': 0, '--ty': 0 });
     gsap.set('.device', { '--py': 0 });
 
@@ -468,14 +400,9 @@
         .from(title.words, { yPercent: 110, duration: 1.2, stagger: 0.07 }, 0.35)
         .fromTo('.hero-lead', { autoAlpha: 0, y: 24, filter: 'blur(8px)' }, { autoAlpha: 1, y: 0, filter: 'blur(0px)' }, 0.6)
         .fromTo('.hero-actions', { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0 }, 0.72)
-        .add(body.dataset.hero === 'terminal' ? termIntro() : deviceIntro(), 0.3)
+        .add(termIntro(), 0.3)
         .fromTo('.hero-foot', { autoAlpha: 0 }, { autoAlpha: 1, duration: 1 }, 0.9);
       tl.eventCallback('onComplete', () => term.boot());
-    }
-
-    function deviceIntro() {
-      return gsap.fromTo('.device', { autoAlpha: 0, y: 40, scale: 0.96, filter: 'blur(12px)' },
-        { autoAlpha: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 1.6, clearProps: 'filter,scale' });
     }
 
     // Terminal: sube, se "enciende" abriéndose desde una línea horizontal y luego aparece su interfaz.
@@ -566,8 +493,6 @@
       if (pts.length) tl.to(pts, { autoAlpha: 1, scale: 1, duration: 0.6, ease: 'back.out(2)', stagger: 0.012 }, 0.05);
       const bars = $$('.bars .fill', el);
       if (bars.length) tl.to(bars, { scaleX: 1, duration: 0.9, stagger: 0.12 }, 0.3);
-      const led = $$('.led-in', el);
-      if (led.length) tl.add(ledFlicker(led), 0.1);
       const letters = $$('.hl', el);
       if (letters.length) tl.add(ledFlicker(letters, { stagger: 0.07 }), 0);
     }
@@ -642,23 +567,7 @@
       setX(x);
     });
 
-    /* ---------- Cursor: inclinación 3D del panel y botones magnéticos ---------- */
-    if (finePointer && body.dataset.hero !== 'terminal') {  // la terminal tiene su propia inclinación
-      const tilt = $('.tilt');
-      const rx = gsap.quickTo(tilt, '--rx', { duration: 0.9, ease: 'power3' });
-      const ry = gsap.quickTo(tilt, '--ry', { duration: 0.9, ease: 'power3' });
-      tilt.addEventListener('pointermove', (e) => {
-        const r = tilt.getBoundingClientRect();
-        const nx = (e.clientX - r.left) / r.width - 0.5;
-        const ny = (e.clientY - r.top) / r.height - 0.5;
-        ry(nx * 14);
-        rx(-ny * 12);
-        tilt.style.setProperty('--gx', `${(nx + 0.5) * 100}%`);
-        tilt.style.setProperty('--gy', `${(ny + 0.5) * 100}%`);
-      });
-      tilt.addEventListener('pointerleave', () => { rx(0); ry(0); });
-    }
-
+    /* ---------- Cursor: botones magnéticos ---------- */
     if (finePointer) {
       // Desplazamiento máximo en px: con el anillo del hover (4px) no alcanza al botón de al lado
       const MAX = 5;

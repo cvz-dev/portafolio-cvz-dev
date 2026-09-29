@@ -15,7 +15,6 @@
      scramble.decode(600);    // revuelve todo y lo resuelve de izquierda a derecha
      scramble.destroy();      // quita listeners y restaura el texto original
 
-   (La versión anterior, con los puntos que se reacomodan en canvas, está en js/scramble-puntos.js)
    ========================================================= */
 (() => {
   'use strict';
