@@ -23,22 +23,19 @@
     radius: 0.55,
     minRadius: 40,
     swapEvery: 55,
-    letters: 'ABCDEFGHKMNOPRSTUXZ',
-    digits: '0123456789',
+    // Mayúsculas, minúsculas, dígitos y símbolos mezclados para dar variedad
+    glyphs: 'ABCDEFGHKMNOPRSTUXZabdefghkmnpqrstuxz0123456789#$%&*+=?!/<>@',
     touchDuration: 600,
     intro: false,
     introDuration: 1000,
   };
-
-  const isLetter = (ch) => /\p{L}/u.test(ch);
 
   function initScramble(element, options = {}) {
     const noop = { decode() {}, destroy() {} };
     if (!element || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return noop;
 
     const opts = { ...DEFAULTS, ...options };
-    const letterSet = Array.from(opts.letters);
-    const digitSet = Array.from(opts.digits);
+    const glyphSet = Array.from(opts.glyphs);
 
     // El nombre accesible no cambia aunque el texto visible se revuelva
     if (!element.hasAttribute('aria-label')) {
@@ -86,9 +83,8 @@
 
     /* ---------- Bucle global ---------- */
     const randomFor = (c) => {
-      const set = isLetter(c.ch) ? letterSet : digitSet;
       let out;
-      do { out = set[(Math.random() * set.length) | 0]; } while (out === c.ch && set.length > 1);
+      do { out = glyphSet[(Math.random() * glyphSet.length) | 0]; } while (out === c.ch && glyphSet.length > 1);
       return out;
     };
 
